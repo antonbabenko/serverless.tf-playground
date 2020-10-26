@@ -21,7 +21,7 @@ module "lambda" {
     }
   }
 
-//  create_current_version_allowed_triggers = false
+  //  create_current_version_allowed_triggers = false
   allowed_triggers = {
     AllowExecutionFromAPIGateway = {
       service    = "apigateway"

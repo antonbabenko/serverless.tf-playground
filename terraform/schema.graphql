@@ -1,0 +1,18 @@
+type Mutation {
+  putPet(id: ID!, name: String!): Pet
+}
+
+type Pet {
+  id: ID!
+  name: String!
+}
+
+type Query {
+  findPet(id: ID!): Pet
+  listPets: [Pet]
+}
+
+schema {
+  query: Query
+  mutation: Mutation
+}

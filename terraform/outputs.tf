@@ -151,3 +151,74 @@ output "this_lambda_alias_function_version" {
   description = "Lambda function version which the alias uses"
   value       = module.lambda_alias.this_lambda_alias_function_version
 }
+
+#################
+# DynamoDB Table
+#################
+output "this_dynamodb_table_arn" {
+  description = "ARN of the DynamoDB table"
+  value       = module.dynamodb_table.this_dynamodb_table_arn
+}
+
+output "this_dynamodb_table_id" {
+  description = "ID of the DynamoDB table"
+  value       = module.dynamodb_table.this_dynamodb_table_id
+}
+
+##########
+# AppSync
+##########
+
+# GraphQL API
+output "this_appsync_graphql_api_id" {
+  description = "ID of GraphQL API"
+  value       = module.appsync.this_appsync_graphql_api_id
+}
+
+output "this_appsync_graphql_api_arn" {
+  description = "ARN of GraphQL API"
+  value       = module.appsync.this_appsync_graphql_api_arn
+}
+
+output "this_appsync_graphql_api_uris" {
+  description = "Map of URIs associated with the API"
+  value       = module.appsync.this_appsync_graphql_api_uris
+}
+
+# API Key
+output "this_appsync_api_key_id" {
+  description = "Map of API Key ID (Formatted as ApiId:Key)"
+  value       = module.appsync.this_appsync_api_key_id
+}
+
+output "this_appsync_api_key_key" {
+  description = "Map of API Keys"
+  value       = module.appsync.this_appsync_api_key_key
+}
+
+# Datasources
+output "this_appsync_datasource_arn" {
+  description = "Map of ARNs of datasources"
+  value       = module.appsync.this_appsync_datasource_arn
+}
+
+# Resolvers
+output "this_appsync_resolver_arn" {
+  description = "Map of ARNs of resolvers"
+  value       = module.appsync.this_appsync_resolver_arn
+}
+
+# Extra
+output "this_appsync_graphql_api_fqdns" {
+  description = "Map of FQDNs associated with the API (no protocol and path)"
+  value       = module.appsync.this_appsync_graphql_api_fqdns
+}
+
+##########################
+# Various useful commands
+##########################
+
+output "appsync_query_http_cli" {
+  description = "List all pets from GraphQL endpoint"
+  value       = format("http %v x-api-key:%v query='%v'", module.appsync.this_appsync_graphql_api_uris["GRAPHQL"], module.appsync.this_appsync_api_key_key["default"], "{ listPets { id name } }")
+}

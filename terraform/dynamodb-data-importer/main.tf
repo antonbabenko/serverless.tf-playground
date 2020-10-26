@@ -11,12 +11,25 @@ provider "aws" {
   skip_requesting_account_id = false
 }
 
+terraform {
+  backend "inmem" {}
+}
+
+data "terraform_remote_state" "local" {
+  backend = "local"
+
+  config = {
+    path = "../terraform.tfstate"
+  }
+}
+
 resource "random_pet" "this" {
   length = 2
 }
 
-# Put all extra resources which don't belong anywhere
-resource "aws_codedeploy_app" "this" {
-  name             = random_pet.this.id
-  compute_platform = "Lambda"
+resource "aws_dynamodb_table_item" "this" {
+  table_name = data.terraform_remote_state.local.outputs["this_dynamodb_table_id"]
+  hash_key   = "id"
+  range_key  = "name"
+  item       = jsonencode({ "id" : { "S" : uuid() }, "name" : { "S" : random_pet.this.id } })
 }
