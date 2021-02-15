@@ -1,5 +1,5 @@
 module "lambda_function_with_efs" {
-  source = "terraform-aws-modules/lambda/aws"
+  source  = "terraform-aws-modules/lambda/aws"
   version = "~> 1.0"
 
   function_name = "${random_pet.this.id}-lambda-in-vpc-with-efs"
