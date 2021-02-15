@@ -2,10 +2,6 @@ import json
 
 
 def lambda_handler(event, context):
-    body = "Hello from serverless.tf!"
-    body += json.dumps(event)
-    body += json.dumps(context)
-
     r = {
         "isBase64Encoded": False,
         "statusCode": 200,
@@ -13,8 +9,7 @@ def lambda_handler(event, context):
         "headers": {
             "Content-Type": "application/json",
         },
-        "body": json.dumps(body)
+        "body": "Hello from serverless.tf! Lambda function ARN: {}".format(context.invoked_function_arn)
     }
 
     return r
-

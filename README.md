@@ -2,8 +2,6 @@
 
 This repository is a playground for [serverless.tf](https://github.com/antonbabenko/serverless.tf) approach, which aims to simplify all operations when working with the serverless in Terraform.
 
-> This repository is in progress, and should not be used as final reference, or recommended serverless.tf approach (yet).
-
 
 ## Flow
 
@@ -15,7 +13,6 @@ This repository is a playground for [serverless.tf](https://github.com/antonbabe
 
 ```
 $ http https://vdlsaentfnbvtaes7aduvzrwdm.appsync-api.eu-west-1.amazonaws.com/graphql x-api-key:da2-1enspdfpdvfvlk4efjqto4oks4 query='{ listPets { id name } }'
-
 ```
 
 ## To-do
