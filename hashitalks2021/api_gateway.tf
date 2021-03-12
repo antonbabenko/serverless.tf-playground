@@ -19,6 +19,22 @@ module "api_gateway" {
       payload_format_version = "2.0"
     }
 
+    "POST /start-step-function" = {
+      integration_type    = "AWS_PROXY"
+      integration_subtype = "StepFunctions-StartExecution"
+
+      # @todo: Using the same IAM role as Step Function is not the best solution, but I do it anyway :)
+      credentials_arn = module.step_function.this_role_arn
+
+      # Note: jsonencode is used to pass argument as a string
+      request_parameters = jsonencode({
+        StateMachineArn = module.step_function.this_state_machine_arn
+      })
+
+      payload_format_version = "1.0"
+      timeout_milliseconds   = 12000
+    }
+
     "$default" = {
       lambda_arn = module.lambda_get.this_lambda_function_arn
     }

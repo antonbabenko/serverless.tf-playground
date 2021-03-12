@@ -1,0 +1,23 @@
+Comment: My default step function which calls remote API endpoint
+StartAt: POST to remote API endpoint
+States:
+  POST to remote API endpoint:
+    Type: Task
+    Resource: '${lambda1_arn}'
+    Retry:
+      - ErrorEquals:
+          - CustomError
+        IntervalSeconds: 1
+        MaxAttempts: 2
+        BackoffRate: 2
+      - ErrorEquals:
+          - States.TaskFailed
+        IntervalSeconds: 30
+        MaxAttempts: 2
+        BackoffRate: 2
+      - ErrorEquals:
+          - States.ALL
+        IntervalSeconds: 5
+        MaxAttempts: 5
+        BackoffRate: 2
+    End: true

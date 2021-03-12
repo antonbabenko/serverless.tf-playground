@@ -38,6 +38,22 @@ No requirements.
 |------|---------|
 | random | n/a |
 
+## Modules
+
+| Name | Source | Version |
+|------|--------|---------|
+| api_gateway | terraform-aws-modules/apigateway-v2/aws | ~> 0.0 |
+| dynamodb_table | terraform-aws-modules/dynamodb-table/aws | ~> 0 |
+| lambda_get | terraform-aws-modules/lambda/aws | ~> 1.0 |
+| lambda_post | terraform-aws-modules/lambda/aws | ~> 1.0 |
+| step_function | terraform-aws-modules/step-functions/aws | ~> 1.0 |
+
+## Resources
+
+| Name |
+|------|
+| [random_pet](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/pet) |
+
 ## Inputs
 
 No input.
@@ -58,5 +74,4 @@ No input.
 | this\_lambda\_function\_name | The name of the Lambda Function |
 | this\_lambda\_function\_qualified\_arn | The ARN identifying your Lambda Function Version |
 | this\_lambda\_function\_version | Latest published version of Lambda Function |
-
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
