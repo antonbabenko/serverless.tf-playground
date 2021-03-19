@@ -1,0 +1,16 @@
+{
+    "data": {
+      "id": "e448b26c-79ab-4088-9bbd-11dbb70c429a",
+      "type": "webhook-events",
+      "meta": {
+        "idempotencyToken": "aeb719a7005359c2b1993c90cff45"
+      },
+      "attributes": {
+        "endpoint": "https://api.example.com/",
+        "payload": "some-json-can-be-here",
+        "event": "user.created",
+        "created": "2021-03-18T11:00:00.000Z",
+        "updated": "2021-03-18T11:00:00.000Z"
+      }
+    }
+  }

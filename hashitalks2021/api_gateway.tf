@@ -6,7 +6,8 @@ module "api_gateway" {
   description   = "My awesome HTTP API Gateway"
   protocol_type = "HTTP"
 
-  create_api_domain_name = false
+  domain_name                 = "${local.subdomain}.${local.domain_name}"
+  domain_name_certificate_arn = module.acm.this_acm_certificate_arn
 
   integrations = {
     "GET /" = {
@@ -33,6 +34,20 @@ module "api_gateway" {
 
       payload_format_version = "1.0"
       timeout_milliseconds   = 12000
+    }
+
+    "POST /webhook" = {
+      integration_type    = "AWS_PROXY"
+      integration_subtype = "EventBridge-PutEvents"
+      credentials_arn     = module.apigateway_put_events_to_eventbridge_role.this_iam_role_arn
+
+      request_parameters = jsonencode({
+        DetailType = "Webhook from external service",
+        Detail     = "$request.body",
+        Source     = "webhook"
+      })
+
+      payload_format_version = "1.0"
     }
 
     "$default" = {

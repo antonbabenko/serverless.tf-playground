@@ -1,6 +1,9 @@
 # Doing serverless on AWS with Terraform for real
 
-This repository contains code for my talk at HashiTalks 2021.
+This repository contains code for my talk at HashiTalks 2021 plus several more additions described during live-streams:
+
+- March 12th, 2021 - [Webhooks/serverless processing with Terraform on AWS (part 1)](https://www.youtube.com/watch?v=9EjTrmhI6Ug)
+- March 19th, 2021 - [Webhooks/serverless processing with Terraform on AWS (part 2)](https://www.youtube.com/watch?v=ug5JJrhfzHs)
 
 The architecture created by this code ([source](https://ordina-jworks.github.io/cloud/2019/01/14/Infrastructure-as-code-with-terraform-and-aws-serverless.html)): 
 
@@ -36,13 +39,17 @@ No requirements.
 
 | Name | Version |
 |------|---------|
+| aws | n/a |
 | random | n/a |
 
 ## Modules
 
 | Name | Source | Version |
 |------|--------|---------|
+| acm | terraform-aws-modules/acm/aws | ~> 2.0 |
 | api_gateway | terraform-aws-modules/apigateway-v2/aws | ~> 0.0 |
+| apigateway_put_events_to_eventbridge_policy | terraform-aws-modules/iam/aws//modules/iam-policy | ~> 3 |
+| apigateway_put_events_to_eventbridge_role | terraform-aws-modules/iam/aws//modules/iam-assumable-role | ~> 3 |
 | dynamodb_table | terraform-aws-modules/dynamodb-table/aws | ~> 0 |
 | lambda_get | terraform-aws-modules/lambda/aws | ~> 1.0 |
 | lambda_post | terraform-aws-modules/lambda/aws | ~> 1.0 |
@@ -52,6 +59,9 @@ No requirements.
 
 | Name |
 |------|
+| [aws_iam_policy_document](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) |
+| [aws_route53_record](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route53_record) |
+| [aws_route53_zone](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/route53_zone) |
 | [random_pet](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/pet) |
 
 ## Inputs
@@ -62,11 +72,18 @@ No input.
 
 | Name | Description |
 |------|-------------|
+| api\_endpoint | FQDN of an API endpoint |
+| api\_fqdn | List of Route53 records |
+| apigateway\_put\_events\_to\_eventbridge\_role\_arn | n/a |
 | default\_apigatewayv2\_stage\_execution\_arn | The ARN prefix to be used in an aws\_lambda\_permission's source\_arn attribute or in an aws\_iam\_policy to authorize access to the @connections API. |
 | this\_apigatewayv2\_api\_api\_endpoint | The URI of the API |
 | this\_apigatewayv2\_api\_arn | The ARN of the API |
 | this\_apigatewayv2\_api\_execution\_arn | The ARN prefix to be used in an aws\_lambda\_permission's source\_arn attribute or in an aws\_iam\_policy to authorize access to the @connections API. |
 | this\_apigatewayv2\_api\_id | The API identifier |
+| this\_apigatewayv2\_domain\_name\_configuration | The domain name configuration |
+| this\_apigatewayv2\_domain\_name\_id | The domain name identifier |
+| this\_apigatewayv2\_hosted\_zone\_id | The Amazon Route 53 Hosted Zone ID of the endpoint |
+| this\_apigatewayv2\_target\_domain\_name | The target domain name |
 | this\_dynamodb\_table\_arn | ARN of the DynamoDB table |
 | this\_dynamodb\_table\_id | ID of the DynamoDB table |
 | this\_lambda\_function\_arn | The ARN of the Lambda Function |

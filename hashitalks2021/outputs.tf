@@ -96,3 +96,35 @@ output "this_dynamodb_table_id" {
   description = "ID of the DynamoDB table"
   value       = module.dynamodb_table.this_dynamodb_table_id
 }
+
+# API Gateway - Domain name
+output "this_apigatewayv2_domain_name_id" {
+  description = "The domain name identifier"
+  value       = module.api_gateway.this_apigatewayv2_domain_name_id
+}
+
+output "this_apigatewayv2_domain_name_configuration" {
+  description = "The domain name configuration"
+  value       = module.api_gateway.this_apigatewayv2_domain_name_configuration
+}
+
+output "this_apigatewayv2_target_domain_name" {
+  description = "The target domain name"
+  value       = module.api_gateway.this_apigatewayv2_domain_name_target_domain_name
+}
+
+output "this_apigatewayv2_hosted_zone_id" {
+  description = "The Amazon Route 53 Hosted Zone ID of the endpoint"
+  value       = module.api_gateway.this_apigatewayv2_domain_name_hosted_zone_id
+}
+
+# Route53 record
+output "api_fqdn" {
+  description = "List of Route53 records"
+  value       = aws_route53_record.api.fqdn
+}
+
+output "api_endpoint" {
+  description = "FQDN of an API endpoint"
+  value       = "https://${aws_route53_record.api.fqdn}"
+}

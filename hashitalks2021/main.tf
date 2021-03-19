@@ -11,6 +11,11 @@ provider "aws" {
   skip_requesting_account_id = false
 }
 
+locals {
+  domain_name = "terraform-aws-modules.modules.tf" # trimsuffix(data.aws_route53_zone.this.name, ".")
+  subdomain   = "serverless-playground"
+}
+
 resource "random_pet" "this" {
   length = 2
 }
