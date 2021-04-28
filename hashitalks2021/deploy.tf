@@ -2,10 +2,10 @@
 #  source  = "terraform-aws-modules/lambda/aws//modules/deploy"
 #  version = "~> 1.0"
 #
-#  alias_name    = module.lambda_alias.this_lambda_alias_name
-#  function_name = module.lambda.this_lambda_function_name
+#  alias_name    = module.lambda_alias.lambda_alias_name
+#  function_name = module.lambda.lambda_function_name
 #
-#  target_version = module.lambda.this_lambda_function_version
+#  target_version = module.lambda.lambda_function_version
 #  description    = "This is my awesome deploy!"
 #
 #  use_existing_app = true
@@ -19,10 +19,4 @@
 #  create_deployment          = true
 #  wait_deployment_completion = true
 #  #   force_deploy               = true
-#}
-
-# Put all extra resources which don't belong anywhere
-#resource "aws_codedeploy_app" "this" {
-#  name             = random_pet.this.id
-#  compute_platform = "Lambda"
 #}

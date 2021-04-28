@@ -6,7 +6,7 @@ This repository is a playground for [serverless.tf](https://github.com/antonbabe
 ## Flow
 
 1. Source code for Lambda Functions is in `src` folder.
-1. All infrastructure configuration and deployment configurations is in `terraform` folder.
+1. All infrastructure configuration and deployment configurations is in `hashitalks2021` folder.
 1. When code changes, and developer wants to "deploy it to prod", run `cd terraform && terraform init && terraform apply`. This will build deployment package, update resources, and deploy all to _prod_ using AWS CodeDeploy.
 
 ## Useful commands

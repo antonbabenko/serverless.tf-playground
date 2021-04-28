@@ -1,6 +1,6 @@
 module "appsync" {
   source  = "terraform-aws-modules/appsync/aws"
-  version = "~> 0"
+  version = "~> 1"
 
   name = random_pet.this.id
 
@@ -14,14 +14,14 @@ module "appsync" {
     #    lambda1 = {
     #      type = "AWS_LAMBDA"
     #
-    # Note: dynamic references (module.aws_lambda_function1.this_lambda_function_arn) do not work unless you create this resource in advance
+    # Note: dynamic references (module.aws_lambda_function1.lambda_function_arn) do not work unless you create this resource in advance
     #      function_arn = "arn:aws:lambda:eu-west-1:835367859851:function:index_1"
     #    }
 
     dynamodb1 = {
       type = "AMAZON_DYNAMODB"
 
-      # Note: dynamic references (module.dynamodb_table1.this_dynamodb_table_id) do not work unless you create this resource in advance
+      # Note: dynamic references (module.dynamodb_table1.dynamodb_table_id) do not work unless you create this resource in advance
       table_name = random_pet.this.id
       region     = "eu-west-1"
     }

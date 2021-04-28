@@ -1,6 +1,6 @@
 module "apigateway_put_events_to_eventbridge_role" {
   source  = "terraform-aws-modules/iam/aws//modules/iam-assumable-role"
-  version = "~> 3"
+  version = "~> 4.0"
 
   create_role = true
 
@@ -18,7 +18,7 @@ module "apigateway_put_events_to_eventbridge_role" {
 
 module "apigateway_put_events_to_eventbridge_policy" {
   source  = "terraform-aws-modules/iam/aws//modules/iam-policy"
-  version = "~> 3"
+  version = "~> 4.0"
 
   name        = "apigateway-put-events-to-eventbridge"
   path        = "/"
@@ -36,5 +36,5 @@ data "aws_iam_policy_document" "apigateway_put_events_to_eventbridge_policy" {
 }
 
 output "apigateway_put_events_to_eventbridge_role_arn" {
-  value = module.apigateway_put_events_to_eventbridge_role.this_iam_role_arn
+  value = module.apigateway_put_events_to_eventbridge_role.iam_role_arn
 }

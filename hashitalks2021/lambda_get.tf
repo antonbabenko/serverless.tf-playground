@@ -1,6 +1,6 @@
 module "lambda_get" {
   source  = "terraform-aws-modules/lambda/aws"
-  version = "~> 1.0"
+  version = "~> 2.0"
 
   function_name = "${random_pet.this.id}-lambda-get"
   description   = "My awesome Python lambda function"
@@ -18,14 +18,14 @@ module "lambda_get" {
     dynamodb_read = {
       effect    = "Allow",
       actions   = ["dynamodb:GetItem"],
-      resources = [module.dynamodb_table.this_dynamodb_table_arn]
+      resources = [module.dynamodb_table.dynamodb_table_arn]
     }
   }
 
   allowed_triggers = {
     AllowExecutionFromAPIGateway = {
       service    = "apigateway"
-      source_arn = "${module.api_gateway.this_apigatewayv2_api_execution_arn}/*/*/*"
+      source_arn = "${module.api_gateway.apigatewayv2_api_execution_arn}/*/*/*"
     }
   }
 }

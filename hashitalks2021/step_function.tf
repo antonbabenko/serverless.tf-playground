@@ -1,11 +1,11 @@
 module "step_function" {
   source  = "terraform-aws-modules/step-functions/aws"
-  version = "~> 1.0"
+  version = "~> 2.0"
 
   name = random_pet.this.id
 
   definition = jsonencode(yamldecode(templatefile("step_function.asl.yaml", {
-    lambda1_arn = module.lambda_get.this_lambda_function_arn
+    lambda1_arn = module.lambda_get.lambda_function_arn
   })))
 
   trusted_entities = ["apigateway.amazonaws.com"]
@@ -13,7 +13,7 @@ module "step_function" {
   service_integrations = {
     lambda = {
       lambda = [
-        module.lambda_get.this_lambda_function_arn,
+        module.lambda_get.lambda_function_arn,
       ]
     }
 
