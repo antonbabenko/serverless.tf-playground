@@ -13,7 +13,7 @@ module "step_function" {
   service_integrations = {
     lambda = {
       lambda = [
-        module.lambda_get.lambda_function_arn,
+        "*", # module.lambda_get.lambda_function_arn,
       ]
     }
 
