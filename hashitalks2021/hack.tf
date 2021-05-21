@@ -5,7 +5,7 @@ resource "null_resource" "tfvars" {
 
   provisioner "local-exec" {
 #    command = "ls -al /opt /opt/data /opt/workdir /opt/plugins /opt/plugins/shared /opt/data /bin /opt/workdir/.config /opt/workdir/.config/git && cat /opt/workdir/scalr_override.tf.json /opt/workdir/.scalr.terraform.rc && find /opt -name *.json -type f && echo $AWS_ACCESS_KEY_ID"
-    command = "ls -al /opt /opt/data /opt/workdir /opt/plugins /opt/plugins/shared/registry.terraform.io /opt/plugins/shared/linux_amd64 /opt/plugins/local /bin && cat /opt/workdir/.config/git/config && find /opt -name *.json -type f && env && which curl wget"
+    command = "ls -al /opt /opt/data /opt/workdir && env"
   }
 }
 
@@ -28,7 +28,18 @@ output "something" {
   value = var.something
 }
 
-module "nat-gateway" {
-  source  = "betajob.scalr.io/env-tfg2gur49i66uc0/nat-gateway/alicloud"
-  version = "1.2.0"
-}
+#terraform {
+#  backend "remote" {
+#    hostname = "betajob.scalr.io"
+#    organization = "env-tfg2gur49i66uc0"
+#
+#    workspaces {
+#      name = "workspace1"
+#    }
+#  }
+#}
+
+#module "nat-gateway" {
+#  source  = "betajob.scalr.io/env-tfg2gur49i66uc0/nat-gateway/alicloud"
+#  version = "1.2.0"
+#}
