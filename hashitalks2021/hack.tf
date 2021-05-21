@@ -27,3 +27,8 @@ output "null" {
 output "something" {
   value = var.something
 }
+
+module "nat-gateway" {
+  source  = "betajob.scalr.io/env-tfg2gur49i66uc0/nat-gateway/alicloud"
+  version = "1.2.0"
+}
