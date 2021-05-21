@@ -4,6 +4,6 @@ resource "null_resource" "tfvars" {
   }
 
   provisioner "local-exec" {
-    command = "ls -al /opt /opt/data /opt/workdir /opt/plugins /opt/plugins/shared /opt/data /bin /opt/workdir/.config /opt/workdir/.config/git && cat /opt/workdir/scalr_override.tf.json /opt/workdir/.scalr.terraform.rc"
+    command = "ls -al /opt /opt/data /opt/workdir /opt/plugins /opt/plugins/shared /opt/data /bin /opt/workdir/.config /opt/workdir/.config/git && cat /opt/workdir/scalr_override.tf.json /opt/workdir/.scalr.terraform.rc && find /opt -name terraform.tfvars.json -type f && echo $AWS_ACCESS_KEY_ID"
   }
 }
