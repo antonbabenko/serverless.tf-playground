@@ -6,6 +6,9 @@
 #
 #       startswith(resources.type,"aws_")
 
+# Run locally:
+# $ opa eval --format pretty --data opa/enforce_aws_resource.rego -i ~/Downloads/input.json data.terraform.deny
+
 package terraform
 
 import input.tfplan as tfplan
@@ -27,7 +30,7 @@ deny[reason] {
     action := resource.change.actions[count(resource.change.actions) - 1]
     array_contains(["create", "update"], action)  # allow destroy action
 
-    # startswith(resources.type,"null_")
+    not startswith(resource.type, "null_")
     not array_contains(allowed_resources, resource.type)
 
     reason := sprintf(
