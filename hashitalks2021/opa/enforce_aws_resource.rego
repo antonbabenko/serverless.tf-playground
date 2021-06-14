@@ -30,7 +30,7 @@ deny[reason] {
     action := resource.change.actions[count(resource.change.actions) - 1]
     array_contains(["create", "update"], action)  # allow destroy action
 
-    not startswith(resource.type, "null_")
+    #not startswith(resource.type, "null_")
     not array_contains(allowed_resources, resource.type)
 
     reason := sprintf(

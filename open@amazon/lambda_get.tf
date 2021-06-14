@@ -1,8 +1,8 @@
-module "lambda_post" {
+module "lambda_get" {
   source  = "terraform-aws-modules/lambda/aws"
   version = "~> 2.0"
 
-  function_name = "${random_pet.this.id}-lambda-post"
+  function_name = "${random_pet.this.id}-lambda-get"
   description   = "My awesome Python lambda function"
   handler       = "index.lambda_handler"
   runtime       = "python3.8"
@@ -16,15 +16,15 @@ module "lambda_post" {
 
   # Free TACOS don't have Python available, so we can't build natively there.
   #  source_path = "../src/python-function"
-  #  hash_extra  = "post"
+  #  hash_extra  = "get"
 
   attach_tracing_policy    = true
   attach_policy_statements = true
 
   policy_statements = {
-    dynamodb_write = {
+    dynamodb_read = {
       effect    = "Allow",
-      actions   = ["dynamodb:PutItem"],
+      actions   = ["dynamodb:GetItem"],
       resources = [module.dynamodb_table.dynamodb_table_arn]
     }
   }

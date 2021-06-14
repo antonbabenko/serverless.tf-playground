@@ -11,8 +11,8 @@ module "lambda_get" {
   create_package = false
   s3_existing_package = {
     bucket = "fixtures"
-    key = "python3.8-zip/existing_package.zip"
-#    version_id = null
+    key    = "python3.8-zip/existing_package.zip"
+    #    version_id = null
   }
 
   # Free TACOS don't have Python available, so we can't build natively there.
