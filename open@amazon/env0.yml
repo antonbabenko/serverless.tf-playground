@@ -1,0 +1,8 @@
+version: 1
+
+deploy:
+  steps:
+    terraformInit:
+      before:
+        - env
+        - python --version

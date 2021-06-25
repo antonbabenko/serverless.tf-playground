@@ -8,15 +8,15 @@ module "lambda_get" {
   runtime       = "python3.8"
   publish       = true
 
-  create_package = false
-  s3_existing_package = {
-    bucket = "fixtures"
-    key    = "python3.8-zip/existing_package.zip"
-  }
+  # create_package = false
+  # s3_existing_package = {
+  #   bucket = "fixtures"
+  #   key    = "python3.8-zip/existing_package.zip"
+  # }
 
   # Free TACOS don't have Python available, so we can't build natively there.
-  #  source_path = "../src/python-function"
-  #  hash_extra  = "get"
+  source_path = "../src/python-function"
+  hash_extra  = "get"
 
   attach_tracing_policy    = true
   attach_policy_statements = true
