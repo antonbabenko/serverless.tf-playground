@@ -5,4 +5,4 @@ deploy:
     terraformInit:
       before:
         - env
-        - python --version
+        - python3 --version

@@ -19,7 +19,7 @@ module "lambda_get" {
   hash_extra  = "get"
 
   attach_tracing_policy    = true
-  attach_policy_statements = true
+  attach_policy_statements = var.attach_policy_statements
 
   policy_statements = {
     dynamodb_read = {
@@ -35,4 +35,10 @@ module "lambda_get" {
       source_arn = "${module.api_gateway.apigatewayv2_api_execution_arn}/*/*/*"
     }
   }
+}
+
+variable "attach_policy_statements" {
+  type = bool
+  description = "(optional) describe your variable"
+  default = false
 }
