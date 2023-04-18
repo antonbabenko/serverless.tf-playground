@@ -9,11 +9,11 @@ module "lambda_get" {
   publish       = true
 
   # Real AWS infra
-#  create_package = false
-#  s3_existing_package = {
-#    bucket = "fixtures"
-#    key    = "python3.8-zip/existing_package.zip"
-#  }
+  #  create_package = false
+  #  s3_existing_package = {
+  #    bucket = "fixtures"
+  #    key    = "python3.8-zip/existing_package.zip"
+  #  }
 
   # LocalStack AWS infra
   #  awslocal s3 mb s3://fixtures
@@ -25,18 +25,18 @@ module "lambda_get" {
   }
 
   # LocalStack hot swap
-#  create_package = true
-#  source_path = "/Users/Bob/Sites/terraform-aws-modules/terraform-aws-lambda/examples/fixtures/python3.8-app1"
+  #  create_package = true
+  #  source_path = "/Users/Bob/Sites/terraform-aws-modules/terraform-aws-lambda/examples/fixtures/python3.8-app1"
 
-#    create_package = false
-#    s3_existing_package = {
-#      bucket = "__local__"
-#      key    = "/Users/Bob/Sites/terraform-aws-modules/terraform-aws-lambda/examples/fixtures/python3.8-app1"
-#    }
-#  s3_bucket = "__local__"
-#  s3_prefix = "/Users/Bob/Sites/terraform-aws-modules/terraform-aws-lambda/examples/fixtures/python3.8-app1"
+  #    create_package = false
+  #    s3_existing_package = {
+  #      bucket = "__local__"
+  #      key    = "/Users/Bob/Sites/terraform-aws-modules/terraform-aws-lambda/examples/fixtures/python3.8-app1"
+  #    }
+  #  s3_bucket = "__local__"
+  #  s3_prefix = "/Users/Bob/Sites/terraform-aws-modules/terraform-aws-lambda/examples/fixtures/python3.8-app1"
 
-#  ephemeral_storage_size = null
+  #  ephemeral_storage_size = null
 
   attach_tracing_policy    = true
   attach_policy_statements = true
