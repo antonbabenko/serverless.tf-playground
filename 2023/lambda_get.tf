@@ -1,6 +1,6 @@
 module "lambda_get" {
   source  = "terraform-aws-modules/lambda/aws"
-  version = "~> 4.0"
+  version = "~> 6.0"
 
   function_name = "${random_pet.this.id}-lambda-get"
   description   = "My awesome Python lambda function"
