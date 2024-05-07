@@ -8,7 +8,7 @@ data "aws_route53_zone" "this" {
 
 module "acm" {
   source  = "terraform-aws-modules/acm/aws"
-  version = "~> 4.0"
+  version = "~> 5.0"
 
   domain_name               = local.domain_name
   zone_id                   = data.aws_route53_zone.this.id
