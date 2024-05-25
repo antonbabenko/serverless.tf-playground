@@ -5,7 +5,7 @@ module "lambda_post" {
   function_name = "${random_pet.this.id}-lambda-post"
   description   = "My awesome Python lambda function"
   handler       = "index.lambda_handler"
-  runtime       = "python3.8"
+  runtime       = "python3.12"
   publish       = true
 
   # Free TACOS don't have Python available, so we can't build natively there.

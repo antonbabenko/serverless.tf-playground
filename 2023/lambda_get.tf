@@ -5,7 +5,7 @@ module "lambda_get" {
   function_name = "${random_pet.this.id}-lambda-get"
   description   = "My awesome Python lambda function"
   handler       = "index.lambda_handler"
-  runtime       = "python3.8"
+  runtime       = "python3.12"
   publish       = true
 
   #  create_package = false
