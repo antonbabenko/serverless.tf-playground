@@ -6,4 +6,5 @@ terraform.tfvars
 
 builds/
 
+.venv/
 __pycache__/
