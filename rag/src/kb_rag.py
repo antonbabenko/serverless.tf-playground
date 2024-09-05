@@ -1,12 +1,12 @@
 import boto3
 import os
 
-KB_ID = os.environ.get("KB_ID", "ICF8JBMOU1")
-REGION = os.environ.get("REGION", "us-east-1")
+KB_ID = os.environ.get("KB_ID")
+REGION = os.environ.get("REGION")
 
 MODEL = "anthropic.claude-3-sonnet-20240229-v1:0"
 NUM_RESULTS = 10
-
+DEFAULT_QUESTION = "What resources were created?"
 
 def lambda_handler(event={}, context={}):
     # Print the received event to the logs
@@ -14,7 +14,7 @@ def lambda_handler(event={}, context={}):
     # print(event)
     qs = event.get("queryStringParameters", {})
 
-    question = qs.get("q", "What resources were created?")
+    question = qs.get("q", DEFAULT_QUESTION)
 
     # Setup bedrock
     bedrock_agent_runtime = boto3.client(

@@ -1,12 +1,12 @@
-unstructured
-unstructured[all-docs]
-langchain
-langchain-community
-langchain-core
-faiss-cpu
-transformers
-sentence_transformers
-boto3
-botocore
-langchain-aws
-langchain-unstructured
+# unstructured
+# unstructured[all-docs]
+# langchain
+# langchain-community
+# langchain-core
+# faiss-cpu
+# transformers
+# sentence_transformers
+# boto3
+# botocore
+# langchain-aws
+# langchain-unstructured

@@ -1,9 +1,9 @@
-import os
-import pandas
-import boto3
+# import os
+# import pandas
+# import boto3
 
-S3_BUCKET = os.environ["S3_BUCKET"]
-S3_OBJECT = os.environ["S3_OBJECT"]
+# S3_BUCKET = os.environ["S3_BUCKET"]
+# S3_OBJECT = os.environ["S3_OBJECT"]
 
 def lambda_handler(event, context):
     # Print the received event to the logs
@@ -23,12 +23,13 @@ def lambda_handler(event, context):
 
     # Check the api path to determine which tool function to call
     if api_path == "/get_num_records":
-        s3 = boto3.client("s3")
-        s3.download_file(S3_BUCKET, S3_OBJECT, "/tmp/data.csv")
-        df = pandas.read_csv("/tmp/data.csv")
+        # s3 = boto3.client("s3")
+        # s3.download_file(S3_BUCKET, S3_OBJECT, "/tmp/data.csv")
+        # df = pandas.read_csv("/tmp/data.csv")
 
         # Get count of dataframe
-        count = len(df)
+        # count = len(df)
+        count = 37
 
         response_body = {"application/json": {"body": str(count)}}
         response_code = 200
