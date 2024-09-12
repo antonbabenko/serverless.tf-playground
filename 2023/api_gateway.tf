@@ -1,27 +1,32 @@
 module "api_gateway" {
   source  = "terraform-aws-modules/apigateway-v2/aws"
-  version = "~> 4.0"
+  version = "~> 5.0"
 
   name          = "${random_pet.this.id}-http"
   description   = "My awesome HTTP API Gateway"
   protocol_type = "HTTP"
 
-  domain_name                 = "${local.subdomain}.${local.domain_name}"
-  domain_name_certificate_arn = module.acm.acm_certificate_arn
+  domain_name = local.domain_name
+  subdomains  = [local.subdomain]
 
-  integrations = {
+  routes = {
     "GET /" = {
-      lambda_arn             = module.lambda_get.lambda_function_arn
-      payload_format_version = "2.0"
+      integration = {
+        uri                    = module.lambda_get.lambda_function_arn
+        payload_format_version = "2.0"
+      }
     }
-
     "POST /" = {
-      lambda_arn             = module.lambda_post.lambda_function_arn
-      payload_format_version = "2.0"
+      integration = {
+        uri                    = module.lambda_post.lambda_function_arn
+        payload_format_version = "2.0"
+      }
     }
-
     "$default" = {
-      lambda_arn = module.lambda_get.lambda_function_arn
+      integration = {
+        uri                    = module.lambda_get.lambda_function_arn
+        payload_format_version = "2.0"
+      }
     }
   }
 }

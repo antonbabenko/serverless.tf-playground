@@ -26,7 +26,7 @@ module "lambda_post" {
   allowed_triggers = {
     AllowExecutionFromAPIGateway = {
       service    = "apigateway"
-      source_arn = "${module.api_gateway.apigatewayv2_api_execution_arn}/*/*/*"
+      source_arn = "${module.api_gateway.api_execution_arn}/*/POST/*"
     }
   }
 }
