@@ -2,9 +2,9 @@
 # ACM
 ######
 
-data "aws_route53_zone" "this" {
-  name = local.domain_name
-}
+# data "aws_route53_zone" "this" {
+#   name = local.domain_name
+# }
 
 # module "acm" {
 #   source  = "terraform-aws-modules/acm/aws"

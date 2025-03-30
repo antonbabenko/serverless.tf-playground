@@ -14,7 +14,7 @@ Run `terraform init` and `terraform apply` to get everything created.
 Call API Gateway endpoint using GET or POST methods, for eg:
 
 ```
-$ http GET $(terraform output -raw apigatewayv2_api_api_endpoint)
+$ http GET $(terraform output -raw api_endpoint)
 ```
 
 
