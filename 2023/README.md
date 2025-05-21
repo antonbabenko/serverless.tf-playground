@@ -1,6 +1,6 @@
 # Doing serverless on AWS with Terraform for real
 
-This repository contains code for my talks since August 2023.
+This repository contains code for my serverless talks.
 
 The architecture created by this code ([source](https://ordina-jworks.github.io/cloud/2019/01/14/Infrastructure-as-code-with-terraform-and-aws-serverless.html)): 
 
@@ -14,17 +14,29 @@ Run `terraform init` and `terraform apply` to get everything created.
 Call API Gateway endpoint using GET or POST methods, for eg:
 
 ```
+# Get all items
 $ http GET $(terraform output -raw api_endpoint)
+
+# Add a new item
+$ http POST $(terraform output -raw api_endpoint)
 ```
 
+## Using LocalStack
 
-## How to update and deploy changes?
+```
+# Setting LocalStack API Key is required to emulate Amazon API Gateway with LocalStack
+$ export LOCALSTACK_API_KEY=<put-your-key-here>
+$ export GATEWAY_LISTEN="0.0.0.0:4566"
 
-1. Update source code of the Lambda Functions inside `../src/python-function`
-2. Run `terraform apply` to rebuild Lambda Function package (if necessary) and update the dependencies.
+# Start LocalStack
+$ localstack start -d
 
-PS: There is a way to do complex deployments of AWS Lambda functions using AWS CodeDeploy service, see [tmp-deploy directory for code](https://github.com/antonbabenko/serverless.tf-playground/tree/master/hashitalks2021/tmp-deploy).
+# Get all items
+$ http GET $(terraform output -raw api_endpoint)
 
+# Add a new item
+$ http POST $(terraform output -raw api_endpoint)
+```
 
 
 <!-- BEGIN_TF_DOCS -->
@@ -40,7 +52,6 @@ PS: There is a way to do complex deployments of AWS Lambda functions using AWS C
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 4.63 |
 | <a name="provider_random"></a> [random](#provider\_random) | >= 3.0 |
 
 ## Modules
@@ -57,7 +68,6 @@ PS: There is a way to do complex deployments of AWS Lambda functions using AWS C
 | Name | Type |
 |------|------|
 | [random_pet.this](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/pet) | resource |
-| [aws_route53_zone.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/route53_zone) | data source |
 
 ## Inputs
 
@@ -70,6 +80,6 @@ No inputs.
 | <a name="output_api_endpoint"></a> [api\_endpoint](#output\_api\_endpoint) | FQDN of an API endpoint |
 | <a name="output_dynamodb_table_arn"></a> [dynamodb\_table\_arn](#output\_dynamodb\_table\_arn) | ARN of the DynamoDB table |
 | <a name="output_dynamodb_table_id"></a> [dynamodb\_table\_id](#output\_dynamodb\_table\_id) | ID of the DynamoDB table |
-| <a name="output_lambda_function_arn"></a> [lambda\_function\_arn](#output\_lambda\_function\_arn) | The ARN of the Lambda Function |
-| <a name="output_lambda_function_name"></a> [lambda\_function\_name](#output\_lambda\_function\_name) | The name of the Lambda Function |
+| <a name="output_lambda_get_function_name"></a> [lambda\_get\_function\_name](#output\_lambda\_get\_function\_name) | The name of the Lambda Function - GET |
+| <a name="output_lambda_post_function_name"></a> [lambda\_post\_function\_name](#output\_lambda\_post\_function\_name) | The name of the Lambda Function - POST |
 <!-- END_TF_DOCS -->

@@ -4,16 +4,27 @@ module "lambda_post" {
 
   function_name = "${random_pet.this.id}-lambda-post"
   description   = "My awesome Python lambda function"
-  handler       = "index.lambda_handler"
+  handler       = "post.lambda_handler"
   runtime       = "python3.13"
   publish       = true
 
-  # Free TACOS don't have Python available, so we can't build natively there.
-  source_path = "../src/python-function"
-  hash_extra  = "post"
+  source_path = [
+    {
+      path             = "${path.module}/../src/python-function"
+      pip_requirements = true
+      patterns = [
+        "!.*\\.dist-info/.*",
+        "!\\.venv/.*",
+      ]
+    }
+  ]
 
   attach_tracing_policy    = true
   attach_policy_statements = true
+
+  environment_variables = {
+    DYNAMODB_TABLE_NAME = module.dynamodb_table.dynamodb_table_id
+  }
 
   policy_statements = {
     dynamodb_write = {

@@ -1,14 +1,17 @@
-##################
-# Lambda Function
-##################
-output "lambda_function_arn" {
-  description = "The ARN of the Lambda Function"
-  value       = module.lambda_get.lambda_function_arn
+########################
+# Lambda Function - GET
+########################
+output "lambda_get_function_name" {
+  description = "The name of the Lambda Function - GET"
+  value       = module.lambda_get.lambda_function_name
 }
 
-output "lambda_function_name" {
-  description = "The name of the Lambda Function"
-  value       = module.lambda_get.lambda_function_name
+########################
+# Lambda Function - POST
+########################
+output "lambda_post_function_name" {
+  description = "The name of the Lambda Function - POST"
+  value       = module.lambda_post.lambda_function_name
 }
 
 #################
@@ -24,8 +27,10 @@ output "dynamodb_table_id" {
   value       = module.dynamodb_table.dynamodb_table_id
 }
 
-# Route53 record
+########################
+# API Gateway
+########################
 output "api_endpoint" {
   description = "FQDN of an API endpoint"
-  value       = "https://${local.subdomain}.${local.domain_name}"
+  value       = module.api_gateway.api_endpoint
 }

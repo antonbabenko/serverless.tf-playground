@@ -6,8 +6,7 @@ module "api_gateway" {
   description   = "My awesome HTTP API Gateway"
   protocol_type = "HTTP"
 
-  domain_name = local.domain_name
-  subdomains  = [local.subdomain]
+  create_domain_name = false
 
   routes = {
     "GET /" = {
@@ -19,12 +18,6 @@ module "api_gateway" {
     "POST /" = {
       integration = {
         uri                    = module.lambda_post.lambda_function_arn
-        payload_format_version = "2.0"
-      }
-    }
-    "$default" = {
-      integration = {
-        uri                    = module.lambda_get.lambda_function_arn
         payload_format_version = "2.0"
       }
     }

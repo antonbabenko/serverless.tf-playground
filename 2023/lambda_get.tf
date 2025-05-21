@@ -4,28 +4,23 @@ module "lambda_get" {
 
   function_name = "${random_pet.this.id}-lambda-get"
   description   = "My awesome Python lambda function"
-  handler       = "index.lambda_handler"
+  handler       = "get.lambda_handler"
   runtime       = "python3.13"
   publish       = true
 
-  #  create_package = false
-  #  s3_existing_package = {
-  #    bucket = "fixtures"
-  #    key    = "python3.8-zip/existing_package.zip"
-  #    #    version_id = null
-  #  }
-
-  # Free TACOS don't have Python available, so we can't build natively there.
-  source_path = "../src/python-function"
-  hash_extra  = "get"
+  source_path = "../src/python-function/get.py"
 
   attach_tracing_policy    = true
   attach_policy_statements = true
 
+  environment_variables = {
+    DYNAMODB_TABLE_NAME = module.dynamodb_table.dynamodb_table_id
+  }
+
   policy_statements = {
     dynamodb_read = {
       effect    = "Allow",
-      actions   = ["dynamodb:GetItem"],
+      actions   = ["dynamodb:Scan"],
       resources = [module.dynamodb_table.dynamodb_table_arn]
     }
   }

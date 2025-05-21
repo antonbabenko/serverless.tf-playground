@@ -17,3 +17,14 @@ module "dynamodb_table" {
     },
   ]
 }
+
+# resource "aws_dynamodb_table_item" "this" {
+#   table_name = module.dynamodb_table.dynamodb_table_id
+#   hash_key   = "id"
+#   range_key  = "name"
+
+#   item = jsonencode({
+#     "id" = {"S": "1"}
+#     "name" = {"S": "test"}
+#   })
+# }
