@@ -1,6 +1,6 @@
 module "dynamodb_table" {
   source  = "terraform-aws-modules/dynamodb-table/aws"
-  version = "~> 4.0"
+  version = "~> 5.0"
 
   name      = random_pet.this.id
   hash_key  = "id"
