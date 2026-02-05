@@ -8,16 +8,21 @@ module "lambda_post" {
   runtime       = "python3.13"
   publish       = true
 
-  source_path = [
-    {
-      path             = "${path.module}/../src/python-function"
-      pip_requirements = true
-      patterns = [
-        "!.*\\.dist-info/.*",
-        "!\\.venv/.*",
-      ]
-    }
-  ]
+  # source_path = [
+  #   {
+  #     path             = "${path.module}/../src/python-function"
+  #     pip_requirements = true
+  #     patterns = [
+  #       "!.*\\.dist-info/.*",
+  #       "!\\.venv/.*",
+  #     ]
+  #   }
+  # ]
+  create_package = false
+  s3_existing_package = {
+    bucket = "fixtures"
+    key    = "python3.8-zip/existing_package.zip"
+  }
 
   attach_tracing_policy    = true
   attach_policy_statements = true

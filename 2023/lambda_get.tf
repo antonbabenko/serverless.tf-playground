@@ -8,7 +8,12 @@ module "lambda_get" {
   runtime       = "python3.13"
   publish       = true
 
-  source_path = "../src/python-function/get.py"
+  # source_path = "../src/python-function/get.py"
+  create_package = false
+  s3_existing_package = {
+    bucket = "fixtures"
+    key    = "python3.8-zip/existing_package.zip"
+  }
 
   attach_tracing_policy    = true
   attach_policy_statements = true
